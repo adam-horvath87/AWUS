@@ -19,11 +19,13 @@ So here is the adapter on Bus 002.
 
 7. But before we use it, we have to install the driver for it.
 So...into terminal:
+
+#update the packets
+sudo apt-get update
+
+#upgrade the system
+sudo apt-get upgrade
+sudo apt-get dist-upgrade -y
+
+#install the driver
 sudo apt install realtek-rtl8812au-dkms -y
-
-If the system cant find the packet, try to update the packeges with : sudo apt update , then sudo apt upgrade
-If it was'nt enough then we have to install the package manually...:
-
-git clone -b v5.2.20 https://github.com/svpcom/rtl8812au.git   #getting the driver
-cd rtl8812au                                                   #entering into the directory
-sudo ./dkms-install.sh
