@@ -28,4 +28,5 @@ sudo apt-get upgrade
 sudo apt-get dist-upgrade -y
 
 #install the driver
+sudo apt install dkms
 sudo apt install realtek-rtl8812au-dkms -y
