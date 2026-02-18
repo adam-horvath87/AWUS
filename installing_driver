@@ -4,7 +4,7 @@ So. My goal is to setup an AWUS036ACH on my kali virtual machine (Base OS is End
 Step By step:
 
 1: Join the adapter to the computer
-2: To use the adapter, i must install the virtual box's extension pack (Oracle Virtualbox). Othervise the virtual machine won't see the adapter. (cuz i cant use USB 3.0, only 1.1)
+2: To use the adapter, i must install the virtual box's extension pack (Oracle Virtualbox). Othervise the virtual machine won't see the adapter. (bacause i can't use USB 3.0, only 1.1)
 3: Add the adapter to the virtual machine: Settings/USB/ --> enable usb 3.0 , On the right---> add Realtek
 4: Pull out the adapter and start kali.
 5: After entering to the user, join the adapter
@@ -32,13 +32,14 @@ sudo apt-get dist-upgrade -y
 #install the driver
 sudo apt install dkms
 sudo apt install realtek-rtl8812au-dkms -y
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 If its not working, just like to me....
 i can see the adapter in the lsusb list but i can't see the adapter in the iwconfig list...
-(because of the OS version, which is currently 6.18.9... the kernel version doesn't have a working driver support for this adapter...so I needed and older version of the system) 
-So i can see the in the usb list with lsusb, but i cannot see under iwconfig...
-I had to download an original kali iso from their website. The OS version number is 6.12.25 (right now)
-I can't just simply update, upgrade the system (if i do, it will refreshes to 6.18.9, which is not good), i had to find the older systems headers files, and install them manually...So, here are them:
+(because of the OS version, which is currently 6.18.9... the kernel version doesn't have a working driver support for this adapter...so I needed an older version from the system) 
+So i can see the adapter in the usb list with lsusb, but i cannot see under iwconfig...
+I had to download an original kali iso from their website, and reinstall the whole system. The OS version number is 6.12.25 now which is good for me (not too old, but not too fresh).
+I can't just simply update, upgrade the system (if i do, it will refreshes to 6.18.9, which is not good), but to install the adapter, i needed the correct header files (which are good for this OS version)
+and install them manually...So, here are them:
 https://old.kali.org/kali/pool/main/l/linux/
 
 I needed 3 files from here...
@@ -63,7 +64,7 @@ git clone https://github.com/aircrack-ng/rtl8812au.git
 Entering the directory:
 cd rtl8812au 
 
-In tha directory run this command: #installing the driver which i downloaded 
+In the directory run this command: #installing the driver which i downloaded 
 make
 make install
 
