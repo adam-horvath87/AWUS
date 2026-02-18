@@ -35,6 +35,7 @@ In root mode i copied my file into /mnt and it automatically shared with my main
 hcxpcapngtool -o test.hc22000 test.cap
 
 Since it's my router, i know that the password is 8 numbers (it's the default password...VERY important to ALWAYS change the default password!!!!)
+Anyway. If it wouldn't be my router, i would search on it in google, find a user manual, and check the default password, and that would be my first try.
 
 Lets win out the password:
 hashcat -m 22000 -a 3 test.hc22000 ?d?d?d?d?d?d?d?d
