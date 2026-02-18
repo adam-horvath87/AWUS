@@ -17,7 +17,7 @@ Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 Bus 002 Device 003: ID 0bda:8812 Realtek Semiconductor Corp. RTL8812AU 802.11a/b/g/n/ac 2T2R DB WLAN Adapter
 So here is the adapter on Bus 002.
 
-7. But before we use it, we have to install the driver for it.
+7. But before i use it, i have to install the driver for it.
 So...into terminal:
 
 #update the packets
