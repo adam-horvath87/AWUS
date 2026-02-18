@@ -6,11 +6,14 @@ Lets capture a handshake from the router.
 I can use a lot of programs for this, but first i will try the original way...
 Let's start monitoring the "air":
 
+sudo airmon-ng check kill               #killing all unneccessary services
 sudo airodump-ng wlan0                  #wlan0 is my wifi adapter's name
 
 In the list, i found my router:
 BSSID                  PWR     Beacons         #Data         #/s     CH      MB      ENC      CIPHER      AUTH          ESSID
 **:**:**:**:**:**      -38          97            24           0      11    270     WPA2        CCMP       PSk   TP-LINK_055A
+etc.
+etc.  #Other routers, boxes...
 
 Next step is monitoring only this router...
 
