@@ -11,6 +11,7 @@ Step By step:
 6: Open terminal, and type: lsusb
 
 It will show something like this:
+
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 Bus 001 Device 002: ID 80ee:0021 VirtualBox USB Tablet
 Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
